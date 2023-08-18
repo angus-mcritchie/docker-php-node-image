@@ -1,0 +1,6 @@
+{
+    "window.title": "${dirty} Docker Image ${separator} ${activeEditorShort}",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#218b0c",
+    },
+}
