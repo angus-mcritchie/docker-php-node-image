@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
@@ -25,7 +25,7 @@ RUN apt-get install -y zip
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install intl
 RUN docker-php-ext-configure intl
-RUN docker-php-ext-install exif
+
 
 # see https://discuss.circleci.com/t/installing-imagick-on-php-8-1-docker/46820
 RUN apt-get update
