@@ -37,6 +37,21 @@ RUN curl -fsSL https://github.com/Imagick/imagick/archive/refs/tags/3.7.0.tar.gz
 RUN docker-php-ext-install imagick
 RUN rm /etc/ImageMagick-6/policy.xml
 
+# install redis
+RUN pecl install redis
+RUN docker-php-ext-enable redis
+
+# install FTP
+RUN docker-php-ext-install ftp
+
+# Install BCMath
+RUN docker-php-ext-install bcmath
+
+# install & configure OPCache
+RUN docker-php-ext-configure opcache --enable-opcache \
+    && docker-php-ext-install opcache
+
+
 # install nodejs 20.9.0
 RUN apt-get install -y curl
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
