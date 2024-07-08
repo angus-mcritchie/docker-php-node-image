@@ -9,6 +9,8 @@ RUN install-php-extensions bcmath
 RUN install-php-extensions gd
 RUN install-php-extensions intl
 RUN install-php-extensions ftp
+RUN install-php-extensions exif
+RUN install-php-extensions calendar
 
 # Add our custom entrypoint scripts (eg. decrytpting our environment file)
 COPY --chmod=755 ./entrypoint.d/ /etc/entrypoint.d/
