@@ -15,6 +15,11 @@ if [ ! -f "$APP_BASE_DIR/.env.$APP_ENV.encrypted" ]; then
     exit 0
 fi
 
+if [ -f "$APP_BASE_DIR/.env.$APP_ENV" ]; then
+    echo "🔐 $APP_BASE_DIR/.env.$APP_ENV file already decrypted. Skipping decryption."
+    exit 0
+fi
+
 # check $LARAVEL_ENV_ENCRYPTION_KEY is set, i not skip decryption
 if [ -z "$LARAVEL_ENV_ENCRYPTION_KEY" ]; then
     echo "🔐 LARAVEL_ENV_ENCRYPTION_KEY not set. Skipping decryption."
