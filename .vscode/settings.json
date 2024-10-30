@@ -3,4 +3,7 @@
     "workbench.colorCustomizations": {
         "activityBar.background": "#218b0c",
     },
+    "cSpell.words": [
+        "serversideup"
+    ],
 }
