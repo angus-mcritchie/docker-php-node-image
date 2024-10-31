@@ -12,6 +12,13 @@ RUN install-php-extensions ftp
 RUN install-php-extensions exif
 RUN install-php-extensions calendar
 
+# Update the package list
+RUN apt-get update
+
+# Install Ghostscript
+RUN apt-get install -y ghostscript
+RUN rm /etc/ImageMagick-6/policy.xml
+
 # Add our custom entrypoint scripts (eg. decrytpting our environment file)
 COPY --chmod=755 ./entrypoint.d/ /etc/entrypoint.d/
 
