@@ -19,7 +19,7 @@ RUN apt-get update
 RUN apt-get install -y ghostscript
 RUN rm /etc/ImageMagick-6/policy.xml
 
-# Add our custom entrypoint scripts (eg. decrytpting our environment file)
+# Add our custom entrypoint scripts (eg. decrypting our environment file)
 COPY --chmod=755 ./entrypoint.d/ /etc/entrypoint.d/
 
 # Required for custom start up scripts to work with S6 Overlay
