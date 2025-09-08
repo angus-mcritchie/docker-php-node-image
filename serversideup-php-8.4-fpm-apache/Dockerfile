@@ -4,7 +4,7 @@ FROM ghcr.io/serversideup/php:8.4-fpm-apache
 USER root
 
 # Install some additional PHP extensions
-RUN install-php-extensions bcmath imagick gd intl ftp exif calendar
+RUN install-php-extensions bcmath imagick gd intl ftp exif calendar sockets
 
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 

@@ -5,7 +5,7 @@
 ```docker images```
 
 ## Tag the image
-```docker tag fe2fab4af639 goolaman/serversideup-php-8.4-fpm-apache-v1.2.0```
+```docker tag 0520011c9342 goolaman/serversideup-php-8.4-fpm-apache-v1.3.0```
 
 ## Push the image
-```docker push goolaman/serversideup-php-8.4-fpm-apache-v1.2.0```
+```docker push goolaman/serversideup-php-8.4-fpm-apache-v1.3.0```
