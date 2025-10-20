@@ -1,4 +1,4 @@
-FROM ghcr.io/serversideup/php:8.4-fpm-nginx-v4.0.0-beta2
+FROM ghcr.io/serversideup/php:8.4-fpm-nginx
 
 # Switch to root so we can do root things
 USER root
