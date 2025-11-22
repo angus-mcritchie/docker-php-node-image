@@ -38,10 +38,10 @@ if [ "$APP_ENV" != "staging" ] && [ "$APP_ENV" != "production" ]; then
     return 0
 fi
 
-if grep -q "APP_KEY" ".env.$APP_ENV.encrypted"; then
-    echo "ℹ️ .env.$APP_ENV.encrypted contains APP_KEY variable, so attempting to decrypting values only."
+if grep -q "APP_KEY" "$APP_BASE_DIR/.env.$APP_ENV.encrypted"; then
+    echo "ℹ️ $APP_BASE_DIR/.env.$APP_ENV.encrypted contains APP_KEY variable, so attempting to decrypting values only."
     php "$APP_BASE_DIR/artisan" env:decrypt --env=$APP_ENV --only-values
 else
-    echo "🔐 Decrypting .env.$APP_ENV.encrypted file..."
+    echo "🔐 Decrypting $APP_BASE_DIR/.env.$APP_ENV.encrypted file..."
     php "$APP_BASE_DIR/artisan" env:decrypt --env=$APP_ENV
 fi
