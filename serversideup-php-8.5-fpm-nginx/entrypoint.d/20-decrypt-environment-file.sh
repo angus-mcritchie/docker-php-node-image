@@ -26,15 +26,9 @@ if [ -z "$LARAVEL_ENV_ENCRYPTION_KEY" ]; then
     return 0
 fi
 
-# check $APP_BASE_DIR/artisan file exists, i not skip decryption
+# The artisan file must exist to run decryption
 if [ ! -f "$APP_BASE_DIR/artisan" ]; then
     echo "🔐 Artisan file not found. Skipping decryption."
-    return 0
-fi
-
-# check environment is not staging or production, then skip decryption
-if [ "$APP_ENV" != "staging" ] && [ "$APP_ENV" != "production" ]; then
-    echo "🔐 Skipping decryption for $APP_ENV environment."
     return 0
 fi
 
