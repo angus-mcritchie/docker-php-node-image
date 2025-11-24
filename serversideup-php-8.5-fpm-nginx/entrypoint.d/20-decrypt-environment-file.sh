@@ -36,3 +36,5 @@ else
     echo "🔐 Decrypting $APP_BASE_DIR/.env.$APP_ENV.encrypted file..."
     php "$APP_BASE_DIR/artisan" env:decrypt --env="$APP_ENV"
 fi
+
+exit 0
