@@ -4,7 +4,7 @@ FROM ghcr.io/serversideup/php:8.5-fpm-nginx
 USER root
 
 # Install some additional PHP extensions
-RUN install-php-extensions bcmath gd intl ftp exif calendar sockets mysqli
+RUN install-php-extensions bcmath gd intl ftp exif calendar sockets mysqli imagick
 
 # Install imagick from source (required for PHP 8.5 compatibility)
 RUN apt-get update && apt-get install -y --no-install-recommends git libmagickwand-dev \
@@ -26,13 +26,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nodejs \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-# Add our custom entrypoint scripts (eg. decrypting our environment file)
-COPY --chmod=755 ./entrypoint.d/ /etc/entrypoint.d/
-
-# Required for custom start up scripts to work with S6 Overlay
-# See https://serversideup.net/open-source/docker-php/docs/customizing-the-image/adding-your-own-start-up-scripts#advanced-scenarios-s6-overlay-dependencies
-RUN docker-php-serversideup-s6-init
 
 # Drop back to our unprivileged user
 USER www-data
