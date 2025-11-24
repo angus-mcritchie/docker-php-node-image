@@ -4,7 +4,7 @@ FROM ghcr.io/serversideup/php:8.5-fpm-nginx
 USER root
 
 # Install some additional PHP extensions
-RUN install-php-extensions bcmath gd intl ftp exif calendar sockets mysqli imagick
+RUN install-php-extensions bcmath gd intl ftp exif calendar sockets mysqli
 
 # Install imagick from source (required for PHP 8.5 compatibility)
 RUN apt-get update && apt-get install -y --no-install-recommends git libmagickwand-dev \
