@@ -33,7 +33,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install mydumper for parallel database dumps
-RUN curl -L https://github.com/mydumper/mydumper/releases/download/v0.21.3-1/mydumper_0.21.3-1.bookworm_amd64.deb -o /tmp/mydumper.deb && \
+RUN ARCH="$(dpkg --print-architecture)" && \
+    curl -fL "https://github.com/mydumper/mydumper/releases/download/v0.21.3-1/mydumper_0.21.3-1.bookworm_${ARCH}.deb" -o /tmp/mydumper.deb && \
     apt-get update && \
     apt-get install -y /tmp/mydumper.deb && \
     rm -rf /var/lib/apt/lists/* /tmp/mydumper.deb
