@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends git libmagickwa
     && docker-php-ext-enable imagick \
     && rm -rf /tmp/imagick
 
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_24.x | bash
 
 ENV BUN_INSTALL=/usr/local
 RUN curl -fsSL https://bun.sh/install | bash
