@@ -6,8 +6,19 @@ USER root
 # Install some additional PHP extensions
 RUN install-php-extensions bcmath gd intl ftp exif calendar sockets mysqli
 
-# Install imagick from source (required for PHP 8.5 compatibility)
-RUN apt-get update && apt-get install -y --no-install-recommends git libmagickwand-dev \
+# Install imagick from source (required for PHP 8.5 compatibility).
+# `libheif-plugin-aomenc` and `libheif-plugin-svtenc` add AVIF *encoder*
+# delegates to the libheif Imagick links against — without them, Imagick
+# reports `AVIF` in queryFormats() but writeImage() fails with
+# `no encode delegate for this image format AVIF`. aomenc is the libaom
+# reference encoder (best quality); svtenc gives faster encodes for the
+# offline cache-warm path. Both are required to serve AVIF via
+# ImageOptimizer::FORMAT_AVIF.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+        libmagickwand-dev \
+        libheif-plugin-aomenc \
+        libheif-plugin-svtenc \
     && git clone https://github.com/Imagick/imagick.git --depth 1 /tmp/imagick \
     && cd /tmp/imagick \
     && phpize \
