@@ -1,6 +1,19 @@
 # Changelog
 
-All notable changes to the `serversideup-php-8.5-fpm-nginx` image.
+All notable changes to the images in this repo.
+
+## `playwright-sidecar`
+
+### 0.1.0 - 2026-05-25
+
+- Initial release. Headless Chromium sidecar for the Launchpad source pipeline
+- Fastify HTTP surface: one-shot `/fetch` and persistent `/session/*` for step-by-step AI driving
+- `rebrowser-playwright` 1.52.0 + `puppeteer-extra-plugin-stealth` for Cloudflare/DataDome/PerimeterX evasion
+- Pool of N (`POOL_SIZE`, default 3) Chromium contexts; UA + viewport + locale rotation per spin-up
+- Bearer-token auth via `PLAYWRIGHT_AUTH_TOKEN`; idle session sweep at 30s, default 120s TTL
+- Multi-arch: linux/amd64 + linux/arm64
+
+## `serversideup-php-8.5-fpm-nginx`
 
 ## 1.6.0 - 2026-05-15
 

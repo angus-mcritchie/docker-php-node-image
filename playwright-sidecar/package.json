@@ -1,0 +1,18 @@
+{
+    "name": "launchpad-playwright-sidecar",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Headless Chromium sidecar that fetches JS-rendered HTML for the Launchpad source pipeline. Uses rebrowser-playwright (CDP Runtime.Enable leak patch) + playwright-extra stealth plugin to defeat Cloudflare Bot Management, DataDome, and PerimeterX.",
+    "engines": {
+        "node": ">=20"
+    },
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "fastify": "^5.1.0",
+        "playwright-extra": "^4.3.6",
+        "puppeteer-extra-plugin-stealth": "^2.11.2",
+        "rebrowser-playwright": "^1.49.1"
+    }
+}
