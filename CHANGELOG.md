@@ -15,6 +15,13 @@ All notable changes to the images in this repo.
 
 ## `serversideup-php-8.5-fpm-nginx`
 
+## 1.7.0 - 2026-07-30
+
+- Rebuild on the latest base image: serversideup v4.5.1, PHP 8.5.8, nginx 1.30.4 (fixes a 9.2/10 nginx CVE), Debian 13 trixie
+- Bump `mydumper` from `0.21.3-1` to `1.0.3-1` (first stable/LTS line; `--enable-binlog` is now deprecated and the log defaults to stderr instead of stdout)
+- Derive the Debian codename from `/etc/os-release` when fetching the `mydumper` `.deb` — the pin was still installing the bookworm build on a trixie base
+- Node 24 (current LTS) and Bun unchanged
+
 ## 1.6.0 - 2026-05-15
 
 - Add `libheif-plugin-aomenc` and `libheif-plugin-svtenc` so Imagick can encode AVIF (`writeImage` previously failed with `no encode delegate for this image format AVIF`)
