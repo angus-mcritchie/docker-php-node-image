@@ -43,9 +43,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install mydumper for parallel database dumps
-RUN ARCH="$(dpkg --print-architecture)" && \
-    curl -fL "https://github.com/mydumper/mydumper/releases/download/v0.21.3-1/mydumper_0.21.3-1.bookworm_${ARCH}.deb" -o /tmp/mydumper.deb && \
+# Install mydumper for parallel database dumps. The .deb is per-architecture and
+# per-Debian-release, so both are derived at build time to stay in step with the
+# base image (which moved to trixie).
+RUN MYDUMPER_VERSION="1.0.3-1" && \
+    ARCH="$(dpkg --print-architecture)" && \
+    . /etc/os-release && \
+    curl -fL "https://github.com/mydumper/mydumper/releases/download/v${MYDUMPER_VERSION}/mydumper_${MYDUMPER_VERSION}.${VERSION_CODENAME}_${ARCH}.deb" -o /tmp/mydumper.deb && \
     apt-get update && \
     apt-get install -y /tmp/mydumper.deb && \
     rm -rf /var/lib/apt/lists/* /tmp/mydumper.deb
