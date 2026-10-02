@@ -15,6 +15,11 @@ All notable changes to the images in this repo.
 
 ## `serversideup-php-8.5-fpm-nginx`
 
+## 1.9.0 - 2026-10-02
+
+- Adds nginx's brotli filter module (`/usr/lib/nginx/modules/ngx_http_brotli_filter_module.so`), built against the image's own nginx from signature-checked source; apps opt in with `load_module` + `brotli on`
+- Adds `libbrotli1` explicitly as the module's runtime dependency
+
 ## 1.8.0 - 2026-10-02
 
 - Rebuild on the latest stable base image: PHP 8.5.8 → 8.5.10 (fixes CVE-2026-17544, CVE-2026-9672, CVE-2026-17543, CVE-2026-7260), Debian 13 package updates; nginx stays 1.30.4
