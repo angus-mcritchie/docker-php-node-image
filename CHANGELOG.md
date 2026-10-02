@@ -15,6 +15,11 @@ All notable changes to the images in this repo.
 
 ## `serversideup-php-8.5-fpm-nginx`
 
+## 1.8.0 - 2026-10-02
+
+- Rebuild on the latest stable base image: PHP 8.5.8 → 8.5.10 (fixes CVE-2026-17544, CVE-2026-9672, CVE-2026-17543, CVE-2026-7260), Debian 13 package updates; nginx stays 1.30.4
+- PHP 8.5.11 (11 further CVEs) is only on serversideup v5.0.0 betas so far; rebuild again once a stable tag carries it
+
 ## 1.7.0 - 2026-07-30
 
 - Rebuild on the latest base image: serversideup v4.5.1, PHP 8.5.8, nginx 1.30.4 (fixes a 9.2/10 nginx CVE), Debian 13 trixie
