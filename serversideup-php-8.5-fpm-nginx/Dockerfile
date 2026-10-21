@@ -1,4 +1,6 @@
-FROM ghcr.io/serversideup/php:8.5-fpm-nginx AS upstream
+# Pinned to a v4 release tag: the floating 8.5-fpm-nginx tag moved to serversideup v5, which changes
+# trusted-proxy and OPcache defaults. v4.5.3 = PHP 8.5.12 + nginx 1.30.6.
+FROM ghcr.io/serversideup/php:8.5-fpm-nginx-v4.5.3 AS upstream
 
 ############################################
 # Brotli filter module for nginx

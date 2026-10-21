@@ -15,6 +15,11 @@ All notable changes to the images in this repo.
 
 ## `serversideup-php-8.5-fpm-nginx`
 
+## 1.10.0 - 2026-10-22
+
+- Rebuild on serversideup v4.5.3: PHP 8.5.10 → 8.5.12 (fixes two critical pre-auth RCEs, CVE-2026-109618 and CVE-2026-109619, plus 8.5.11's fixes), nginx 1.30.4 → 1.30.6
+- Base pinned to the `8.5-fpm-nginx-v4.5.3` release tag: the floating `8.5-fpm-nginx` tag now tracks serversideup v5 (trusted-proxy and OPcache default changes)
+
 ## 1.9.0 - 2026-10-02
 
 - Adds nginx's brotli filter module (`/usr/lib/nginx/modules/ngx_http_brotli_filter_module.so`), built against the image's own nginx from signature-checked source; apps opt in with `load_module` + `brotli on`
