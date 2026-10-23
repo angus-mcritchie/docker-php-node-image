@@ -15,6 +15,13 @@ All notable changes to the images in this repo.
 
 ## `serversideup-php-8.5-fpm-nginx`
 
+## 2.0.0 - 2026-10-24
+
+- Rebuild on serversideup v5.0.3 (base pinned to `8.5-fpm-nginx-v5.0.3`): PHP 8.5.12 and nginx 1.30.6 as before; session upload progress now off by default, the workaround for the unpatched CVE-2026-115560
+- Breaking (serversideup v5): with `PHP_OPCACHE_ENABLE=1`, `PHP_OPCACHE_VALIDATE_TIMESTAMPS` defaults to `0`, so a bind-mounted dev container no longer sees code edits unless it sets `PHP_OPCACHE_VALIDATE_TIMESTAMPS=1`
+- Breaking (serversideup v5): OPcache memory 128 → 256, interned strings 8 → 32, max accelerated files 10000 → 32531, realpath cache TTL 120 → 600, `session.cookie_httponly` on, s6 `dependencies` files moved to `dependencies.d/`
+- `TRUSTED_PROXY` defaults to `cloudflare`: the same Docker-network and Cloudflare ranges with `CF-Connecting-IP` that v4 hard-coded in `remoteip.conf`, plus loopback
+
 ## 1.10.0 - 2026-10-22
 
 - Rebuild on serversideup v4.5.3: PHP 8.5.10 → 8.5.12 (fixes two critical pre-auth RCEs, CVE-2026-109618 and CVE-2026-109619, plus 8.5.11's fixes), nginx 1.30.4 → 1.30.6

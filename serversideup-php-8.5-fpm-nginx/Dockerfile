@@ -1,6 +1,8 @@
-# Pinned to a v4 release tag: the floating 8.5-fpm-nginx tag moved to serversideup v5, which changes
-# trusted-proxy and OPcache defaults. v4.5.3 = PHP 8.5.12 + nginx 1.30.6.
-FROM ghcr.io/serversideup/php:8.5-fpm-nginx-v4.5.3 AS upstream
+# Pinned to a release tag rather than the floating 8.5-fpm-nginx tag, so a rebuild only moves the base
+# on purpose. v5.0.3 = PHP 8.5.12 + nginx 1.30.6, session upload progress off (CVE-2026-115560).
+# v5 changed OPcache defaults (validate_timestamps 0, bigger pools) and added TRUSTED_PROXY; apps that
+# bind-mount code with OPcache on must set PHP_OPCACHE_VALIDATE_TIMESTAMPS=1 themselves.
+FROM ghcr.io/serversideup/php:8.5-fpm-nginx-v5.0.3 AS upstream
 
 ############################################
 # Brotli filter module for nginx

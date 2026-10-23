@@ -1,9 +1,10 @@
 ### Build for multiple architectures and push to registry
 ```bash
-cd serversideup-php-8.5-fpm-nginx && docker buildx build --no-cache --platform linux/amd64,linux/arm64 -t goolaman/serversideup-php-8.5-fpm-nginx:1.10.0 --push .
+cd serversideup-php-8.5-fpm-nginx && docker buildx build --no-cache --platform linux/amd64,linux/arm64 -t goolaman/serversideup-php-8.5-fpm-nginx:2.0.0 --push .
 ```
 
 ### Tag history
+- `2.0.0` — rebuild on serversideup v5.0.3 (`8.5-fpm-nginx-v5.0.3`): PHP 8.5.12, nginx 1.30.6, `session.upload_progress.enabled` off by default (mitigates CVE-2026-115560, unpatched upstream). Breaking, from serversideup v5: with `PHP_OPCACHE_ENABLE=1`, `PHP_OPCACHE_VALIDATE_TIMESTAMPS` now defaults to `0` (set it to `1` where code is bind-mounted), OPcache memory 128→256, interned strings 8→32, max files 10000→32531, realpath TTL 120→600; `session.cookie_httponly` on; s6 `dependencies` files moved to `dependencies.d/`. `TRUSTED_PROXY` defaults to `cloudflare`, which is the same Docker-network + Cloudflare range list and `CF-Connecting-IP` header v4 hard-coded.
 - `1.10.0` — rebuild pinned to serversideup v4.5.3 (`8.5-fpm-nginx-v4.5.3`): PHP 8.5.12 (CVE-2026-109618, CVE-2026-109619, both critical pre-auth RCE) and nginx 1.30.6. The floating `8.5-fpm-nginx` tag now follows serversideup v5; moving to v5 is its own change (TRUSTED_PROXY defaults to `cloudflare`, OPcache defaults change).
 - `1.9.0` — adds nginx's brotli filter module at `/usr/lib/nginx/modules/ngx_http_brotli_filter_module.so` (google/ngx_brotli a71f9312, vendored in `nginx-brotli/`), compiled against the upstream image's own nginx (version read from `nginx -v`; source checked against nginx.org's signing keys in `nginx-brotli/keys/`). Nothing loads it by default: an app adds `load_module /usr/lib/nginx/modules/ngx_http_brotli_filter_module.so;` to its `nginx.conf` and `brotli on;` (+ `brotli_types`) to its config. If the upstream nginx moves, a rebuild picks the new version up; add a new release key to `nginx-brotli/keys/` if nginx.org starts signing with one.
 - `1.8.0` — rebuild on the current serversideup v4 base: PHP 8.5.8 → 8.5.10 (CVE-2026-17544 bcmath OOB write, CVE-2026-9672 libgd, CVE-2026-17543, CVE-2026-7260) plus Debian 13 package updates. No Dockerfile changes.
